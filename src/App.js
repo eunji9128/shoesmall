@@ -68,15 +68,19 @@ function App() {
             </>
           } />
           <Route path='/detail/:id' element={<Detail products={products} />} />
-          <Route path='/about' element={<About />}>
-            <Route path='member' element={<div>members</div>} />
-            <Route path='location' element={<div>location</div>} />
-          </Route>
+          <Route path='/about' element={<About />} />
           <Route path='/event' element={<Event />}>
             <Route path='one' element={<div>첫 주문 시 50% 할인</div>} />
             <Route path='two' element={<div>생일 기념 쿠폰 받기</div>} />
           </Route>
         </Routes>
+
+        <div style={{clear: "both"}}>
+          <h1>footer</h1>
+          <p>footer blahblah</p>
+        </div>
+        {/* nav - outlet - footer 레이아웃 다시 잡아야 하고, 
+        먼저 routing part 정리부터 해줘야 할 듯 */}
     </div>
 
   );
