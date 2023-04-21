@@ -2,7 +2,7 @@ import './App.css';
 import { Navbar, Container, Nav, Row, Button } from 'react-bootstrap';
 import product_data from './data.js';
 import { useState } from 'react';
-import { BrowserRouter, Route, Routes, useNavigate } from 'react-router-dom';
+import { BrowserRouter, Outlet, Route, Routes, useNavigate } from 'react-router-dom';
 import Detail from './routes/Detail.js';
 import About from './routes/About.js';
 import Event from './routes/Event.js';
@@ -47,33 +47,7 @@ function App() {
 
         {/* define routes */}
 
-        <Routes>
-          <Route path='/' element={
-            <>
-
-              {/* main background */}
-              <div className='main-bg'></div>
-
-              {/* product display */}
-              <Container>
-                <List products={products} />
-              </Container>
-
-              {
-                more_btn == true
-                  ? <Button variant='secondary' onClick={MoreProduct}>more products</Button>
-                  : null
-              }
-
-            </>
-          } />
-          <Route path='/detail/:id' element={<Detail products={products} />} />
-          <Route path='/about' element={<About />} />
-          <Route path='/event' element={<Event />}>
-            <Route path='one' element={<div>첫 주문 시 50% 할인</div>} />
-            <Route path='two' element={<div>생일 기념 쿠폰 받기</div>} />
-          </Route>
-        </Routes>
+        <Outlet></Outlet>
 
         <div style={{clear: "both"}}>
           <h1>footer</h1>
