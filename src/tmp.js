@@ -1,27 +1,49 @@
-<Routes>
-          <Route path='/' element={
-            <>
+import { Container, Button } from "react-bootstrap";
+import List from "./components/List";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import axios from "axios";
+import product_data from "./data";
 
-              {/* main background */}
-              <div className='main-bg'></div>
+const ProductDisplay = () => {
+    let [products, setProducts] = useState(product_data);
+    let navigate = useNavigate();
+    let [more_count, setMoreCount] = useState(1);
+    let [more_btn, setMoreBtn] = useState(true);
+  
+    const MoreProduct = function () {
+      setMoreCount(more_count + 1);
+      if (more_count > 1) {
+        setMoreBtn(false);
+      };
+      axios.get(`https://codingapple1.github.io/shop/data${more_count + 1}.json`)
+        .then((res) => {
+          var copy = [...products, ...res.data];
+          setProducts(copy);
+        })
+        .catch(() => {
+          console.log('failed');
+        })
+    }
 
-              {/* product display */}
-              <Container>
+    return (
+        <>
+            {/* main background */}
+            <div className='main-bg'></div>
+            
+            {/* product display */}
+            <Container>
                 <List products={products} />
-              </Container>
+            </Container>
+            
+            {
+            more_btn == true
+                ? <Button variant='secondary' onClick={MoreProduct}>more products</Button>
+                : null
+            }
+        </>
+        
+    )
+};
 
-              {
-                more_btn == true
-                  ? <Button variant='secondary' onClick={MoreProduct}>more products</Button>
-                  : null
-              }
-
-            </>
-          } />
-          <Route path='/detail/:id' element={<Detail products={products} />} />
-          <Route path='/about' element={<About />} />
-          <Route path='/event' element={<Event />}>
-            <Route path='one' element={<div>첫 주문 시 50% 할인</div>} />
-            <Route path='two' element={<div>생일 기념 쿠폰 받기</div>} />
-          </Route>
-        </Routes>
+export default ProductDisplay

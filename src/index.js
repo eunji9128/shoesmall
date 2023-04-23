@@ -8,6 +8,7 @@ import Detail from './routes/Detail';
 import About from './routes/About';
 import Event from './routes/Event';
 import product_data from './data';
+import ProductDisplay from './tmp';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const basename = process.env.PUBLIC_URL;
@@ -17,6 +18,10 @@ const routes = [
     path: '/',
     element: <App />,
     children: [
+      {
+        path: '/',
+        element: <ProductDisplay />,
+      },
       {
         path: 'about',
         element: <About />,
