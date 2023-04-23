@@ -11,7 +11,7 @@ const Navtop = () => {
                     <Nav.Link onClick={() => { navigate('/') }}>Home</Nav.Link>
                     {/* <Nav.Link onClick={()=>{navigate('/detail/0')}}>Detail</Nav.Link> */}
                     <Nav.Link onClick={() => { navigate('/about') }}>About</Nav.Link>
-                    <Nav.Link onClick={() => { navigate('/event') }}>Event</Nav.Link>
+                    {/* <Nav.Link onClick={() => { navigate('/event') }}>Event</Nav.Link> */}
                 </Nav>
             </Container>
         </Navbar>

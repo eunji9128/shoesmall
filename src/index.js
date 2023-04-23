@@ -8,7 +8,7 @@ import Detail from './routes/Detail';
 import About from './routes/About';
 import Event from './routes/Event';
 import product_data from './data';
-import ProductDisplay from './tmp';
+import ProductDisplay from './routes/ProductDisplay';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const basename = process.env.PUBLIC_URL;

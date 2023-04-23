@@ -1,9 +1,9 @@
 import { Container, Button } from "react-bootstrap";
-import List from "./components/List";
+import List from "../components/List";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
-import product_data from "./data";
+import product_data from "../data";
 
 const ProductDisplay = () => {
     let [products, setProducts] = useState(product_data);
@@ -38,7 +38,7 @@ const ProductDisplay = () => {
             
             {
             more_btn == true
-                ? <Button variant='secondary' onClick={MoreProduct}>more products</Button>
+                ? <Button variant='secondary' className="m-5" onClick={MoreProduct}>more products</Button>
                 : null
             }
         </>
