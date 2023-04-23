@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 function About() {
     return (
+        <>
         <Container>
             <BackgroundImg>
                 <Box>
@@ -13,18 +14,21 @@ function About() {
             </BackgroundImg>
             {/* <Outlet></Outlet> */}
         </Container>
+        
+        </>
     )
 };
 
 const Container = styled.div`
     width: 100%;
+    height: 80vh;
 `
 
 const BackgroundImg = styled.div`
     position: absolute;
     width: 100vw;
     height: 80vh;
-    background-image: url('/about_background1.jpg');
+    background-image: url('./about_background1.jpg');
     background-size: contain; 
     background-position: center;  
     background-repeat: no-repeat;
@@ -52,7 +56,7 @@ const ShoesImg = styled.div`
     left: 50%;
     width: 40%;
     height: 40%;
-    background-image: url('/shoes1.png');
+    background-image: url('./shoes1.png');
     background-size: contain;
     background-repeat: no-repeat;
 `

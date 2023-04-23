@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { ListGroupItem, Nav } from 'react-bootstrap';
+import { Nav } from 'react-bootstrap';
 
 function Detail(props) {
     let { id } = useParams();
@@ -38,9 +38,9 @@ function Detail(props) {
                 </div>
                 <div className="col-md-6">
                     <h4 className="pt-5">{props.products[idx].title}</h4>
-                    <p>{props.products[idx].content}</p>
-                    <p>{props.products[idx].price}원</p>
-                    <button className="btn btn-danger">주문하기</button>
+                    <p className="m-3">{props.products[idx].content}</p>
+                    <p className="m-3">{props.products[idx].price}원</p>
+                    <button className="btn btn-danger m-3">주문하기</button>
                 </div>
             </div>
 
