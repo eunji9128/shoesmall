@@ -22,6 +22,13 @@ function Detail(props) {
         }
     }, [tab])
 
+    const onOrderHandler = (e, data) => {
+        e.preventDefault();
+        let cart = (JSON.parse(localStorage.getItem('cart')) || '');
+        cart = [...cart, data];
+        localStorage.setItem('cart', JSON.stringify(cart));
+    }
+
     return (
         <div className={'container start '+ comp_fade}>
             {/* event timer */}
@@ -40,7 +47,10 @@ function Detail(props) {
                     <h4 className="pt-5">{props.products[idx].title}</h4>
                     <p className="m-3">{props.products[idx].content}</p>
                     <p className="m-3">{props.products[idx].price}원</p>
-                    <button className="btn btn-danger m-3">주문하기</button>
+                    <button 
+                        className="btn btn-danger m-3"
+                        onClick={(e) => onOrderHandler(e, props.products[idx])}
+                    >주문하기</button>
                 </div>
             </div>
 
