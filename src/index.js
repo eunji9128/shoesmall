@@ -3,16 +3,15 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { BrowserRouter, RouterProvider, createBrowserRouter } from 'react-router-dom';
+import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Detail from './routes/Detail';
 import About from './routes/About';
 import Event from './routes/Event';
-import product_data from './data';
 import ProductDisplay from './routes/ProductDisplay';
 
+let products = JSON.parse(localStorage.getItem('products'));
 const root = ReactDOM.createRoot(document.getElementById('root'));
 const basename = process.env.PUBLIC_URL;
-let products = product_data;
 const routes = [
   {
     path: '/',
@@ -30,10 +29,10 @@ const routes = [
         path: 'detail/:id',
         element: <Detail products={products}/>,
       },
-      {
-        path: 'event',
-        element: <Event />,
-      }
+      // {
+      //   path: 'event',
+      //   element: <Event />,
+      // }
     ]
   }
 ];

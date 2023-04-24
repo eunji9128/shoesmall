@@ -1,13 +1,11 @@
 import { Container, Button } from "react-bootstrap";
 import List from "../components/List";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import product_data from "../data";
 
 const ProductDisplay = () => {
     let [products, setProducts] = useState(product_data);
-    let navigate = useNavigate();
     let [more_count, setMoreCount] = useState(1);
     let [more_btn, setMoreBtn] = useState(true);
   
@@ -19,6 +17,7 @@ const ProductDisplay = () => {
       axios.get(`https://codingapple1.github.io/shop/data${more_count + 1}.json`)
         .then((res) => {
           var copy = [...products, ...res.data];
+          localStorage.setItem('products', JSON.stringify(copy));
           setProducts(copy);
         })
         .catch(() => {
