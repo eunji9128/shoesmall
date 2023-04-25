@@ -1,17 +1,20 @@
 import { useEffect, useState } from "react";
 import { Card, CloseButton, Container, ListGroup, Button } from "react-bootstrap";
 import styled from "styled-components";
-import { checkTotalPrice, onDecreaseHandler, onDeleteHandler, onIncreaseHandler } from "../functions/cartHandler";
+import { checkTotalPrice, onBuyHandler, onDecreaseHandler, onDeleteHandler, onIncreaseHandler } from "../functions/cartHandler";
 
 const Cart = () => {
-    let [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || '');
+    let [cart, setCart] = useState(JSON.parse(localStorage.getItem('cart')) || []);
     let [total, setTotal] = useState(0);
+    let [disable, setDisable] = useState(true);
     let total_ = 0;
 
     useEffect(() => {
         checkTotalPrice(total, setTotal, total_, cart);
+        (cart.length > 0 ? setDisable(false) : setDisable(true));
         return () => {
             setTotal(0);
+            setDisable(true);
         };
     }, [cart]);
 
@@ -57,7 +60,8 @@ const Cart = () => {
                 <Button 
                     variant="primary" 
                     className="me-3"
-                    onClick={() => { alert('주문이 완료 되었습니다!') }}
+                    disabled={disable}
+                    onClick={(e) => onBuyHandler(e, setCart)}
                 >구매하기</Button>
             </Box>
         </Container>

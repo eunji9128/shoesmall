@@ -36,10 +36,16 @@ export const onDeleteHandler = (e, idx, cart, setCart) => {
 };
 
 export const checkTotalPrice = (total, setTotal, total_, cart) => {
-    console.log('total1: ', total);
     cart.map((data) => {
         console.log(total);
         total_ = total_ + (data.amount * data.price);
         setTotal(total_);
     })
+};
+
+export const onBuyHandler = (e, setCart) => {
+    e.preventDefault();
+    setCart([]);
+    localStorage.setItem('cart', "[]");
+    alert('주문이 완료되었습니다!');
 };
