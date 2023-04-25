@@ -1,19 +1,13 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Nav } from 'react-bootstrap';
+import { Container, Nav } from 'react-bootstrap';
 
 function Detail(props) {
     let { id } = useParams();
-    let [ event, setEvent ] = useState(true);
     let idx = props.products.findIndex((e) => e.id === parseInt(id));
     let [ tab, setTab ] = useState(0);
     let [ tab_fade, setTabFade ] = useState('');
     let [ comp_fade, setCompFade ] = useState('');
-
-    useEffect(() => {
-        setTimeout(() => { setEvent(false) }, 5000)
-        setCompFade('end');
-    })
 
     useEffect(() => {
         setTimeout(() => { setTabFade('end') }, 100)
@@ -22,15 +16,49 @@ function Detail(props) {
         }
     }, [tab])
 
-    return (
-        <div className={'container start '+ comp_fade}>
-            {/* event timer */}
-            {
-                event == true
-                    ? <div className='alert alert-warning'>5초 이내 구매 시 할인</div>
-                    : null
-            }
+    const checkCartItem = (cart, data) => {
+        if (cart === '') return -1;
+        console.log('pass case1');
+        for (let i=0; i<cart.length; i++) {
+            console.log('cart id: ', cart[i].id, 'data id: ', data.id);
+            if (cart[i].id === data.id) return i
+        }
+        return -1;
+    };
 
+    const onOrderHandler = (e, data) => {
+        e.preventDefault();
+        let cart = (JSON.parse(localStorage.getItem('cart')) || '');
+        let cartCheck = checkCartItem(cart, data);
+        console.log(cartCheck);
+
+        if (cart === '') {
+            cart = [{
+                ...data,
+                amount: 1,
+            }]
+        } else if (cart !== '' && cartCheck < 0) {
+            console.log('case2');
+            cart = [
+                ...cart,
+                {
+                    ...data,
+                    amount: 1,
+                },
+            ];
+        } else {
+            console.log('case3');
+            cart[cartCheck] = {
+                ...data,
+                amount: cart[cartCheck].amount + 1,
+            }
+        }
+        localStorage.setItem('cart', JSON.stringify(cart));
+        alert('메뉴가 장바구니에 추가 되었습니다!');
+    }
+
+    return (
+        <Container>
             {/* product detail */}
             <div className="row">
                 <div className="col-md-6">
@@ -40,7 +68,10 @@ function Detail(props) {
                     <h4 className="pt-5">{props.products[idx].title}</h4>
                     <p className="m-3">{props.products[idx].content}</p>
                     <p className="m-3">{props.products[idx].price}원</p>
-                    <button className="btn btn-danger m-3">주문하기</button>
+                    <button 
+                        className="btn btn-danger m-3"
+                        onClick={(e) => onOrderHandler(e, props.products[idx])}
+                    >주문하기</button>
                 </div>
             </div>
 
@@ -57,7 +88,7 @@ function Detail(props) {
                 </Nav.Item>
             </Nav>
             <TabContent tab = {tab} tab_fade = {tab_fade}/>
-        </div>
+        </Container>
     )
 }
 

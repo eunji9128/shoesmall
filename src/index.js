@@ -8,6 +8,7 @@ import Detail from './routes/Detail';
 import About from './routes/About';
 import Event from './routes/Event';
 import ProductDisplay from './routes/ProductDisplay';
+import Cart from './routes/Cart';
 
 let products = JSON.parse(localStorage.getItem('products'));
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -33,6 +34,10 @@ const routes = [
       //   path: 'event',
       //   element: <Event />,
       // }
+      {
+        path: 'cart',
+        element: <Cart />,
+      }
     ]
   }
 ];
