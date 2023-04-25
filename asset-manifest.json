@@ -1,0 +1,16 @@
+{
+  "files": {
+    "main.css": "/shoesmall/static/css/main.1fb80078.css",
+    "main.js": "/shoesmall/static/js/main.b89494cd.js",
+    "static/js/787.cde60b6b.chunk.js": "/shoesmall/static/js/787.cde60b6b.chunk.js",
+    "static/media/shoesmall_main2.jpg": "/shoesmall/static/media/shoesmall_main2.ace5ef9f499d59d12f69.jpg",
+    "index.html": "/shoesmall/index.html",
+    "main.1fb80078.css.map": "/shoesmall/static/css/main.1fb80078.css.map",
+    "main.b89494cd.js.map": "/shoesmall/static/js/main.b89494cd.js.map",
+    "787.cde60b6b.chunk.js.map": "/shoesmall/static/js/787.cde60b6b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.1fb80078.css",
+    "static/js/main.b89494cd.js"
+  ]
+}
